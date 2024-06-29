@@ -4,8 +4,10 @@ from utils import load_json
 
 class DataBase:
     database_rules = load_json(path.join('resources', 'rules', 'database_rules.json'))
+
     connection = sqlite3.connect(path.join('resources', 'databases', 'stores_database.db'))
     cursor = connection.cursor()
+    connection.row_factory = sqlite3.Row
 
     @classmethod
     def create_database(cls):
