@@ -1,0 +1,26 @@
+[
+    {
+        "id": 0,
+        "name_table": "STORES",
+        "columns": {"ID": "INTEGER PRIMARY KEY AUTOINCREMENT",
+                    "NAME": "TEXT"}
+    },
+    
+    {
+        "id": 1,
+        "name_table": "PRODUCTS",
+        "columns": {"ID": "INTEGER PRIMARY KEY AUTOINCREMENT",
+                    "PRODUCT_NAME": "TEXT",
+                    "STORE_ID": "INTEGER",
+                    "TYPE_ID": "INTEGER",
+                    "PRICE": "REAL",
+                    "LINK": "TEXT"}
+    },
+
+    {
+        "id": 2,
+        "name_table": "TYPES",
+        "columns": {"ID": "INTEGER PRIMARY KEY AUTOINCREMENT",
+                    "TYPE": "TEXT"}
+    }
+]
