@@ -1,0 +1,7 @@
+# Data Scraping
+selenium        # Scrap data with js enabled
+requests        # Main lib for scrap
+beautifulsoup   # Pretier html
+
+# Data Finder
+regex           # Regular Expression
