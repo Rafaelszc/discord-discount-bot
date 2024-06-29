@@ -27,13 +27,16 @@ class DataBase:
             list_columns.remove('ID')
 
             quantity_columns = len(list_columns)
-            
-        except TypeError:
-            print(f"{table} table don't exists.")
-            
-        else:
+
             cls.cursor.execute(f"INSERT INTO {table} ({','.join(list_columns)}) VALUES ({','.join(['?']*quantity_columns)})", data)
 
+        except TypeError:
+            print(f"{table} table don't exists.")
+
+        except sqlite3.ProgrammingError:
+            print('Unexpected amount of data, different from that supported on column')
+
+        else:
             cls.connection.commit()
 
         cls.cursor.close()
