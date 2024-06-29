@@ -1,13 +1,12 @@
-import requests
-from bs4 import BeautifulSoup as bs
+from utils import get_response
+import re
 
-link = 'https://www.kabum.com.br/busca/mouse'
-header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0'}
+link = 'https://www.kabum.com.br'
 
-request = requests.get(link, headers=header)
+def main():
+    response = get_response(f'https://www.kabum.com.br/produto/94555/mouse-gamer-redragon-cobra-chroma-rgb-10000dpi-7-botoes-preto-m711-v2')
 
-site = bs(request.text, 'html.parser')
+    site = response.content
+    price_compile = re.compile(r'<h4 class="sc-5492faee-2 ipHrwP finalPrice">(.*?)</h4>', re.DOTALL)
 
-product_article = site.find('article', attrs={'class': 'sc-9d1f1537-7 hxuzLm productCard'})
-
-product_info = product_article.find('div', attrs={'class': 'sc-9d1f1537-11 hsSiHU'})
+    price = re.findall(price_compile, str(site))[0]
