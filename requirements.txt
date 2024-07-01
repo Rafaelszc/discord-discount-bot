@@ -1,5 +1,4 @@
 # Data Scraping
-selenium        # Scrap data with js enabled
 requests        # Main lib for scrap
 beautifulsoup4   # Pretier html
 
