@@ -1,6 +1,6 @@
 # Data Scraping
 requests        # Main lib for scrap
-beautifulsoup4   # Pretier html
+beautifulsoup4  # Pretier html
 
 # Data Finder
 regex           # Regular Expression
