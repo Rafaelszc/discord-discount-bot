@@ -1,22 +1,35 @@
 from utils import get_response
 import re
-
-link = 'https://www.kabum.com.br'
+from bs4 import BeautifulSoup as bs
 
 class Kabum:
-    response = get_response(f'https://www.kabum.com.br/produto/102653/headset-gamer-sem-fio-astro-a50-base-station-gen-4-com-audio-dolby-atmos-para-xbox-series-xbox-one-pc-mac-preto-939-001681?gad_source=1&gclid=EAIaIQobChMI_8qvvtWBhwMV-VhIAB2yzAivEAQYASABEgLa3PD_BwE')
+    response = get_response(f'https://www.kabum.com.br/produto/112948/mouse-gamer-logitech-g203-lightsync-rgb-efeito-de-ondas-de-cores-6-botoes-programaveis-e-ate-8-000-dpi-preto-910-005793')
 
-    site = response.content
+    site = bs(response.text, 'html.parser')
 
     @classmethod
-    def price(cls):
-        price_compile = re.compile(r'<h4 class="sc-5492faee-2 ipHrwP finalPrice">(.*?)</h4>', re.DOTALL)
-
-        price_partition = re.findall(price_compile, str(cls.site))[0]
-        price_partition = str(price_partition).replace('\\xc2\\xa', ' ')
+    def get_price(cls):
+        price_partition = cls.site.find('h4', attrs={'class': 'sc-5492faee-2 ipHrwP finalPrice'}).text
 
         symbol, price = price_partition.split()
 
-        price = float(price.replace(',', '.'))
-        
+        price = float(price.replace('.', '').replace(',', '.'))
+
         return price
+    
+    @classmethod
+    def get_name(cls):
+        name_partition = cls.site.find('h1', attrs={'class': 'sc-58b2114e-6 brTtKt'})
+
+        name = name_partition.text
+
+        return name
+    
+    @classmethod
+    def is_promotion(cls):
+        promotion_partition = cls.site.find('span', attrs={'class': 'sc-5492faee-1 ibyzkU oldPrice'})
+
+        if promotion_partition != []:
+            return True
+        
+        return False
