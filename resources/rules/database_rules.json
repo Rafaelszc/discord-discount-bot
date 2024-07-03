@@ -3,14 +3,14 @@
         "id": 0,
         "name_table": "STORES",
         "columns": {"ID": "INTEGER PRIMARY KEY AUTOINCREMENT",
-                    "NAME": "TEXT"}
+                    "STORES": "TEXT"}
     },
     
     {
         "id": 1,
         "name_table": "PRODUCTS",
         "columns": {"ID": "INTEGER PRIMARY KEY AUTOINCREMENT",
-                    "PRODUCT_NAME": "TEXT",
+                    "PRODUCTS": "TEXT",
                     "STORE_ID": "INTEGER",
                     "TYPE_ID": "INTEGER",
                     "PRICE": "REAL",
@@ -21,6 +21,6 @@
         "id": 2,
         "name_table": "TYPES",
         "columns": {"ID": "INTEGER PRIMARY KEY AUTOINCREMENT",
-                    "TYPE": "TEXT"}
+                    "TYPES": "TEXT"}
     }
 ]
