@@ -59,17 +59,32 @@ class DataBase:
             self.connection.close()
 
             return required_id[0]
+        
+        self.cursor.close()
+        self.connection.close()
     
     def get_values(self, table: str, head: int = None) -> list:
         if head is not None and head > 0:
-            query_search = self.cursor.execute(f'SELECT * FROM {table} WHERE (ID > 0 AND ID <= {head})')
+            try:
+                query_search = self.cursor.execute(f'SELECT * FROM {table} WHERE (ID > 0 AND ID <= {head})')
 
-            values = [value for value in query_search]
+            except sqlite3.OperationalError:
+                print(f"{table} table don't exists")
 
-            return values
+            else:
+                values = [value for value in query_search]
+
+                return values
         else:
-            query_search = self.cursor.execute(f'SELECT * FROM {table}')
+            try:
+                query_search = self.cursor.execute(f'SELECT * FROM {table}')
+            
+            except sqlite3.OperationalError:
+                print(f"{table} table don't exists")
+            else:
+                values = [value for value in query_search]
 
-            values = [value for value in query_search]
-
-            return values
+                return values
+            
+        self.cursor.close()
+        self.connection.close()
