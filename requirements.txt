@@ -2,5 +2,8 @@
 requests        # Main lib for scrap
 beautifulsoup4  # Pretier html
 
-# Data Finder
-regex           # Regular Expression
+# Discord
+discord         # Connect to bot
+
+# Dev utils
+python-dotenv          # Use .env files
