@@ -76,6 +76,9 @@ class DataBase:
 
                 return values
         else:
+            if type(head) == int and head <= 0:
+                raise ValueError (f"head can be only None or a integer > 0.\nCan you say {head*-1 if head < 0 else 1}?")
+            
             try:
                 query_search = self.cursor.execute(f'SELECT * FROM {table}')
             
