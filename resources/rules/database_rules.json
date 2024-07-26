@@ -1,25 +1,26 @@
 [
     {
         "id": 0,
-        "name_table": "STORES",
+        "table_name": "STORES",
         "columns": {"ID": "INTEGER PRIMARY KEY AUTOINCREMENT",
                     "STORES": "TEXT"}
     },
     
     {
         "id": 1,
-        "name_table": "PRODUCTS",
+        "table_name": "PRODUCTS",
         "columns": {"ID": "INTEGER PRIMARY KEY AUTOINCREMENT",
                     "PRODUCTS": "TEXT",
                     "STORE_ID": "INTEGER",
                     "TYPE_ID": "INTEGER",
                     "PRICE": "REAL",
-                    "LINK": "TEXT"}
+                    "IMAGE_URL": "TEXT",
+                    "URL": "TEXT"}
     },
 
     {
         "id": 2,
-        "name_table": "TYPES",
+        "table_name": "TYPES",
         "columns": {"ID": "INTEGER PRIMARY KEY AUTOINCREMENT",
                     "TYPES": "TEXT"}
     }
