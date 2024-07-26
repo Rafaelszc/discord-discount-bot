@@ -1,0 +1,12 @@
+[
+    {
+        "id": 0,
+        "table_name": "TYPES",
+        "values": ["mouse logitech", "headset havit", "teclado mecanico", "placa de video rtx 4060"]
+    },
+    {
+        "id": 1,
+        "table_name": "STORES",
+        "values": ["kabum"]
+    }
+]
