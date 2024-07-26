@@ -5,26 +5,34 @@ from utils import load_json
 class DataBase:
     def __init__(self) -> None:
         self.database_rules = load_json(path.join('resources', 'rules', 'database_rules.json'))
+        self.default_values = load_json(path.join('resources', 'rules', 'default_values.json'))
 
         self.connection = sqlite3.connect(path.join('resources', 'databases', 'stores_database.db'))
         self.cursor = self.connection.cursor()
         self.connection.row_factory = sqlite3.Row
 
-    async def create_database(self):
+    async def create_database(self) -> None:
         for mapping_json in self.database_rules:
-            name_table = mapping_json['name_table']
+            table_name = mapping_json['table_name']
             columns = ", ".join([f"{column_name} {column_type}" for column_name, column_type in mapping_json["columns"].items()])
 
-            self.cursor.execute(f"DROP TABLE IF EXISTS {mapping_json['name_table']}")
+            self.cursor.execute(f"DROP TABLE IF EXISTS {mapping_json['table_name']}")
 
-            self.cursor.execute(f"CREATE TABLE {name_table}({columns})")
+            self.cursor.execute(f"CREATE TABLE {table_name}({columns})")
+
+        for mapping_json in self.default_values:
+            table_name = mapping_json['table_name']
+            values = mapping_json['values']
+
+            for value in values:
+                await DataBase().insert_values((value,), table_name)
 
         self.cursor.close()
         self.connection.close()
     
-    async def insert_values(self, data: tuple, table: str):
+    async def insert_values(self, data: tuple, table: str) -> None:
         try:
-            list_columns = list(next((item["columns"].keys() for item in self.database_rules if item["name_table"] == table), None))
+            list_columns = list(next((item["columns"].keys() for item in self.database_rules if item["table_name"] == table), None))
             list_columns.remove('ID')
 
             quantity_columns = len(list_columns)
