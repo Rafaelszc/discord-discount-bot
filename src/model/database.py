@@ -10,7 +10,7 @@ class DataBase:
         self.cursor = self.connection.cursor()
         self.connection.row_factory = sqlite3.Row
 
-    def create_database(self):
+    async def create_database(self):
         for mapping_json in self.database_rules:
             name_table = mapping_json['name_table']
             columns = ", ".join([f"{column_name} {column_type}" for column_name, column_type in mapping_json["columns"].items()])
@@ -22,7 +22,7 @@ class DataBase:
         self.cursor.close()
         self.connection.close()
     
-    def insert_values(self, data: tuple, table: str):
+    async def insert_values(self, data: tuple, table: str):
         try:
             list_columns = list(next((item["columns"].keys() for item in self.database_rules if item["name_table"] == table), None))
             list_columns.remove('ID')
@@ -43,16 +43,16 @@ class DataBase:
         self.cursor.close()
         self.connection.close()
 
-    def get_id(self, item: str, table: str) -> int:
-        column = table
+    async def get_id(self, item: str, table_name: str) -> int:
+        column_name = table_name
 
         try:
-            query_search = self.cursor.execute(f"SELECT ID FROM {table} WHERE {column} = ?", (item,))
+            query_search = self.cursor.execute(f"SELECT ID FROM {table_name} WHERE {column_name} = ?", (item,))
 
             required_id = [id for id in query_search][0]
 
         except IndexError:
-            print(f"{table} hasn't {item} item")
+            print(f"{table_name} hasn't {item} item")
 
         else:
             self.cursor.close()
@@ -63,7 +63,7 @@ class DataBase:
         self.cursor.close()
         self.connection.close()
     
-    def get_values(self, table: str, head: int = None) -> list:
+    async def get_values(self, table: str, head: int = None) -> list:
         if head is not None and head > 0:
             try:
                 query_search = self.cursor.execute(f'SELECT * FROM {table} WHERE (ID > 0 AND ID <= {head})')
