@@ -50,6 +50,15 @@ class ProductsEmbed(commands.Cog):
             await DataBase().remove_value('REQUESTS', 'URL', url)
 
             await channel.send(embed=product_embed)
+    
+    @commands.command()
+    async def add_item(self, ctx: commands.Context,*args):
+        product = ' '.join(args)
+
+        await DataBase().insert_values((product,), 'TYPES')
+        types = await DataBase().get_values('TYPES')
+
+        print(types)
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(ProductsEmbed(bot))
