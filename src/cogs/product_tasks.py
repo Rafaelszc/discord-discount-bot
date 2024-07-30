@@ -17,7 +17,15 @@ class ProductsEmbed(commands.Cog):
         cog = ProductsEmbed(self.bot)
         cog.channel_id = channel_id
 
+        await ctx.send(f"Start on {channel_id}!")
         await cog.send_product.start()
+    
+    @commands.command()
+    async def stop_loop(self, ctx: commands.context):
+        cog = ProductsEmbed(self.bot)
+
+        await cog.send_product.stop()
+        await ctx.send("Loop stoped")
 
     @tasks.loop(minutes=10)
     async def send_product(self):
@@ -56,9 +64,8 @@ class ProductsEmbed(commands.Cog):
         product = ' '.join(args)
 
         await DataBase().insert_values((product,), 'TYPES')
-        types = await DataBase().get_values('TYPES')
 
-        print(types)
+        await ctx.reply(f"{product} was added!")
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(ProductsEmbed(bot))
