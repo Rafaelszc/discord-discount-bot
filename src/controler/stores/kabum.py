@@ -6,7 +6,7 @@ class Kabum:
         self.site = get_response(url)
         self.store_name = "kabum"
 
-    async def get_product_url(self) -> list:
+    async def get_products_url(self) -> list:
         product_url_partition = self.site.find_all('a', attrs={'class': 'sc-9d1f1537-10 kueyFw productLink'}, href=True)
 
         url_list = []
