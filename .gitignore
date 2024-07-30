@@ -163,4 +163,3 @@ cython_debug/
 
 # Discord-Discount-Bot
 src/test
-resources/databases
