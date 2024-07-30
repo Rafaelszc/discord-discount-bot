@@ -7,7 +7,7 @@ class SearchItens(commands.Cog):
         self.bot = bot
         super().__init__()
 
-    @tasks.loop(minutes=1)
+    @tasks.loop(hours=5)
     async def search_itens(self):
         await DataBase().remove_value('REQUESTS', None, 'all')
         type_products = await DataBase().get_values('TYPES')

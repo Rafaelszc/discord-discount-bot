@@ -19,7 +19,7 @@ class ProductsEmbed(commands.Cog):
 
         await cog.send_product.start()
 
-    @tasks.loop(seconds=3)
+    @tasks.loop(minutes=5)
     async def send_product(self):
         channel = self.bot.get_channel(self.channel_id)
         try:
