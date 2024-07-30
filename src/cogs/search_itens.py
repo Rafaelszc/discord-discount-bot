@@ -9,7 +9,7 @@ class SearchItens(commands.Cog):
 
     @tasks.loop(minutes=1)
     async def search_itens(self):
-        await DataBase().create_database()
+        await DataBase().remove_value('REQUESTS', None, 'all')
         type_products = await DataBase().get_values('TYPES')
 
         for request_product in type_products:
