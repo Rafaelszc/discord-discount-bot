@@ -8,13 +8,8 @@
     
     {
         "id": 1,
-        "table_name": "PRODUCTS",
+        "table_name": "REQUESTS",
         "columns": {"ID": "INTEGER PRIMARY KEY AUTOINCREMENT",
-                    "PRODUCTS": "TEXT",
-                    "STORE_ID": "INTEGER",
-                    "TYPE_ID": "INTEGER",
-                    "PRICE": "REAL",
-                    "IMAGE_URL": "TEXT",
                     "URL": "TEXT"}
     },
 
