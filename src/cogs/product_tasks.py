@@ -19,15 +19,8 @@ class ProductsEmbed(commands.Cog):
 
         await ctx.send(f"Start on {channel_id}!")
         await cog.send_product.start()
-    
-    @commands.command()
-    async def stop_loop(self, ctx: commands.context):
-        cog = ProductsEmbed(self.bot)
 
-        await cog.send_product.stop()
-        await ctx.send("Loop stoped")
-
-    @tasks.loop(minutes=10)
+    @tasks.loop(seconds=3)
     async def send_product(self):
         channel = self.bot.get_channel(self.channel_id)
         try:
