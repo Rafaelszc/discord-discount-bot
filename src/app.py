@@ -21,7 +21,6 @@ async def load_cogs():
 
 @bot.event 
 async def on_ready():
-    await bot.change_presence(activity=discord.Game(name="Extract data..."))
     print('bot on')
     await load_cogs()
 
