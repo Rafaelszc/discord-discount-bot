@@ -99,3 +99,10 @@ class DataBase:
             
         self.cursor.close()
         self.connection.close()
+    
+    async def remove_value(self, table: str, column: str, item):
+        self.cursor.execute(f'DELETE FROM {table} WHERE {column} = ?', (item,))
+
+        self.connection.commit()
+        self.cursor.close()
+        self.connection.close()
