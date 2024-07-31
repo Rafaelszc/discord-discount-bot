@@ -20,7 +20,7 @@ class ProductsEmbed(commands.Cog):
         await ctx.send(f"Start on {channel_id}!")
         await cog.send_product.start()
 
-    @tasks.loop(seconds=3)
+    @tasks.loop(minutes=10)
     async def send_product(self):
         channel = self.bot.get_channel(self.channel_id)
         try:
