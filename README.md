@@ -39,7 +39,7 @@ Add on json
     "id": 1,
     "table_name": "the table name",
     "columns": {"column1": "column1 type",
-                "column2": "column2 type",}
+                "column2": "column2 type"}
 }
 ```
 
