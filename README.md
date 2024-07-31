@@ -6,6 +6,9 @@
   - [Contents](#contents)
   - [How it works (simplified)](#how-it-works-simplified)
   - [Preview (fast)](#preview-fast)
+    - [Help command](#help-command)
+    - [Add\_item command](#add_item-command)
+    - [Start\_loop command](#start_loop-command)
   - [How it works (technically)](#how-it-works-technically)
   - [How rules works](#how-rules-works)
     - [Database rules](#database-rules)
@@ -22,7 +25,14 @@ The bot employs an in-store search system (currently operational only on <a href
 
 ## Preview (fast)
 
-https://github.com/Rafaelszc/discord-discount-bot/blob/main/resources/midia/preview.mp4
+### Help command
+![help](https://raw.githubusercontent.com/Rafaelszc/discord-discount-bot/main/resources/midia/help.gif)
+
+### Add_item command
+![add_item](https://raw.githubusercontent.com/Rafaelszc/discord-discount-bot/main/resources/midia/add_item.gif)
+
+### Start_loop command
+![start_loop](https://raw.githubusercontent.com/Rafaelszc/discord-discount-bot/main/resources/midia/start_loop.gif)
 
 ## How it works (technically)
 
