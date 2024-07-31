@@ -36,11 +36,10 @@ In `resources/rules/database_rules.json`, this json will set the default databas
 Add on json
 ```json
 {
-    "id": the_id,
+    "id": 1,
     "table_name": "the table name",
     "columns": {"column1": "column1 type",
-                "column2": "column2 type",
-                ...}
+                "column2": "column2 type",}
 }
 ```
 
@@ -51,9 +50,9 @@ In `resources/rules/default_values.json`, this json will set the default values 
 Add on json
 ```json
 {
-    "id": the_id,
+    "id": 1,
     "table_name": "table name for this value",
-    "values": ["value1", "value2", ...]
+    "values": ["value1", "value2"]
 }
 ```
 
