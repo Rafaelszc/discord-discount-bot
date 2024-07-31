@@ -21,9 +21,8 @@
 The bot employs an in-store search system (currently operational only on <a href="https://www.kabum.com.br" target="_blank">KaBuM!</a>) to identify the most pertinent products. The product categories are pre-defined; however, additional product categories may be incorporated through the use of the $add_item "item" command. The bot randomly selects specific products and disseminates them at regular 10-minute intervals.
 
 ## Preview (fast)
-<video controls>
-    <source src="resources/midia/preview.mp4" type="video/mp4">
-</video>
+
+https://github.com/Rafaelszc/discord-discount-bot/blob/main/resources/midia/preview.mp4
 
 ## How it works (technically)
 
