@@ -11,7 +11,7 @@ class DataBase:
         self.cursor = self.connection.cursor()
         self.connection.row_factory = sqlite3.Row
 
-    async def create_database(self) -> None:
+    def create_database(self) -> None:
         for mapping_json in self.database_rules:
             table_name = mapping_json['table_name']
             columns = ", ".join([f"{column_name} {column_type}" for column_name, column_type in mapping_json["columns"].items()])
@@ -25,12 +25,12 @@ class DataBase:
             values = mapping_json['values']
 
             for value in values:
-                await DataBase().insert_values((value,), table_name)
+                DataBase().insert_values((value,), table_name)
 
         self.cursor.close()
         self.connection.close()
     
-    async def insert_values(self, data: tuple, table: str) -> None:
+    def insert_values(self, data: tuple, table: str) -> None:
         try:
             list_columns = list(next((item["columns"].keys() for item in self.database_rules if item["table_name"] == table), None))
             list_columns.remove('ID')
@@ -51,7 +51,7 @@ class DataBase:
         self.cursor.close()
         self.connection.close()
 
-    async def get_id(self, item: str, table_name: str) -> int:
+    def get_id(self, item: str, table_name: str) -> int:
         column_name = table_name
 
         try:
@@ -71,7 +71,7 @@ class DataBase:
         self.cursor.close()
         self.connection.close()
     
-    async def get_values(self, table: str, head: int = None) -> list:
+    def get_values(self, table: str, head: int = None) -> list:
         if head is not None and head > 0:
             try:
                 query_search = self.cursor.execute(f'SELECT * FROM {table} WHERE (ID > 0 AND ID <= {head})')
@@ -100,7 +100,7 @@ class DataBase:
         self.cursor.close()
         self.connection.close()
     
-    async def remove_value(self, table: str, column: str, item):
+    def remove_value(self, table: str, column: str, item):
         if item == 'all':
             self.cursor.execute(f'DELETE FROM {table}')
         else:

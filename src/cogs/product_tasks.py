@@ -24,14 +24,14 @@ class ProductsEmbed(commands.Cog):
     async def send_product(self):
         channel = self.bot.get_channel(self.channel_id)
         try:
-            url_list = await DataBase().get_values('REQUESTS')
+            url_list = DataBase().get_values('REQUESTS')
             url = url_list[self.index][1]
 
             product_response = Kabum(url)
 
-            name = await product_response.get_name()
-            price = await product_response.get_price()
-            image_url = await product_response.get_image_url()
+            name = product_response.get_name()
+            price = product_response.get_price()
+            image_url = product_response.get_image_url()
             store_name = product_response.store_name
 
         except:
@@ -48,7 +48,7 @@ class ProductsEmbed(commands.Cog):
             product_embed.add_field(name=':money_with_wings: Price:', value=f"R$: {price}")
 
             self.index = randint(0, len(url_list))
-            await DataBase().remove_value('REQUESTS', 'URL', url)
+            DataBase().remove_value('REQUESTS', 'URL', url)
 
             await channel.send(embed=product_embed)
     
@@ -56,7 +56,7 @@ class ProductsEmbed(commands.Cog):
     async def add_item(self, ctx: commands.Context,*args):
         product = ' '.join(args)
 
-        await DataBase().insert_values((product,), 'TYPES')
+        DataBase().insert_values((product,), 'TYPES')
 
         await ctx.reply(f"{product} was added!")
 
